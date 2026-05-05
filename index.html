@@ -69,14 +69,13 @@
         };
     </script>
 
-    <!-- Скрипт за фиксиране на имената на .NET ресурсите (404 грешката) -->
+ 
     <script type="text/javascript">
         window.blazorBoot = (boot) => {
             console.log("Конфигуриране на ресурси...");
             const runtime = boot.resources.runtime;
 
             if (runtime) {
-                // Мапваме стандартните имена към тези с хешовете в GitHub
                 runtime["dotnet.js"] = "dotnet.aydj2s58uy.js";
                 runtime["dotnet.native.js"] = "dotnet.native.mx9wzm9o5h.js";
                 runtime["dotnet.runtime.js"] = "dotnet.runtime.2zl32tp6ah.js";
@@ -85,7 +84,6 @@
         };
     </script>
 
-    <!-- Основен скрипт на Blazor - ВИНАГИ НАЙ-ОТДОЛУ -->
     <script src="_framework/blazor.webassembly.zxhwjtv6sc.js"></script>
 </body>
 
