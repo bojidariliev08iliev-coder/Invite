@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
     <style>
-        /* Скриваме стандартното меню и ленти на Blazor шаблона */
         .sidebar, .top-row { 
             display: none !important; 
         }
@@ -43,12 +42,11 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <!-- Библиотеки -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/bg.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
-    <!-- Скрипт за EmailJS -->
+
     <script type="text/javascript">
         (function () {
             emailjs.init("uUmkgAM-18oPPb9dQ");
@@ -68,24 +66,29 @@
             });
         };
     </script>
-
-    <!-- Скрипт за фиксиране на имената на .NET ресурсите (404 грешката) -->
     <script type="text/javascript">
         window.blazorBoot = (boot) => {
-            console.log("Конфигуриране на ресурси...");
+            console.log("Опит за автоматично намиране на ресурси...");
             const runtime = boot.resources.runtime;
-
+            
             if (runtime) {
-                // Мапваме стандартните имена към тези с хешовете в GitHub
-                runtime["dotnet.js"] = "dotnet.aydj2s58uy.js";
-                runtime["dotnet.native.js"] = "dotnet.native.mx9wzm9o5h.js";
-                runtime["dotnet.runtime.js"] = "dotnet.runtime.2zl32tp6ah.js";
+                const keys = Object.keys(runtime);
+                
+                const dotnetJs = keys.find(k => k.startsWith("dotnet.") && k.endsWith(".js") && !k.includes("native") && !k.includes("runtime"));
+                const nativeJs = keys.find(k => k.includes("dotnet.native.js") || (k.startsWith("dotnet.native") && k.endsWith(".js")));
+                const runtimeJs = keys.find(k => k.includes("dotnet.runtime.js") || (k.startsWith("dotnet.runtime") && k.endsWith(".js")));
+
+                if (dotnetJs) runtime["dotnet.js"] = dotnetJs;
+                if (nativeJs) runtime["dotnet.native.js"] = nativeJs;
+                if (runtimeJs) runtime["dotnet.runtime.js"] = runtimeJs;
+                
+                console.log("Нова карта на ресурсите:", runtime);
             }
             return boot;
         };
     </script>
-
-    <!-- Основен скрипт на Blazor - ВИНАГИ НАЙ-ОТДОЛУ -->
+    <script src="_framework/blazor.webassembly.zxhwjtv6sc.js"></script>
+</body>
     <script src="_framework/blazor.webassembly.zxhwjtv6sc.js"></script>
 </body>
 
