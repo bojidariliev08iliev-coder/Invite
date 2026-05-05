@@ -10,31 +10,24 @@
     <link href="BlazorApp5.styles.css" rel="stylesheet" /> 
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <style>
-   
-    .sidebar {
-        display: none !important;
-    }
-
-    
-    .top-row {
-        display: none !important;
-    }
-
-  
-    .page {
-        display: block !important;
-    }
-
-    main {
-        width: 100% !important;
-    }
-
-    .content {
-        padding: 0 !important;
-    }
-</style>
+        /* Скриваме стандартното меню и ленти на Blazor шаблона */
+        .sidebar, .top-row { 
+            display: none !important; 
+        }
+        .page { 
+            display: block !important; 
+        }
+        main { 
+            width: 100% !important; 
+        }
+        .content { 
+            padding: 0 !important; 
+        }
+    </style>
 </head>
+
 <body>
     <div id="app">
         <svg class="loading-progress">
@@ -50,16 +43,17 @@
         <a class="dismiss">🗙</a>
     </div>
 
-
+    <!-- Библиотеки -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/bg.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
- 
+    <!-- Скрипт за EmailJS -->
     <script type="text/javascript">
         (function () {
             emailjs.init("uUmkgAM-18oPPb9dQ");
         })();
+
         window.sendEmail = (message) => {
             console.log("Изпращане на покана...");
             return emailjs.send("service_7q3r4qf", "template_erho0dg", {
@@ -75,6 +69,23 @@
         };
     </script>
 
+    <!-- Скрипт за фиксиране на имената на .NET ресурсите (404 грешката) -->
+    <script type="text/javascript">
+        window.blazorBoot = (boot) => {
+            console.log("Конфигуриране на ресурси...");
+            const runtime = boot.resources.runtime;
+
+            if (runtime) {
+                // Мапваме стандартните имена към тези с хешовете в GitHub
+                runtime["dotnet.js"] = "dotnet.aydj2s58uy.js";
+                runtime["dotnet.native.js"] = "dotnet.native.mx9wzm9o5h.js";
+                runtime["dotnet.runtime.js"] = "dotnet.runtime.2zl32tp6ah.js";
+            }
+            return boot;
+        };
+    </script>
+
+    <!-- Основен скрипт на Blazor - ВИНАГИ НАЙ-ОТДОЛУ -->
     <script src="_framework/blazor.webassembly.zxhwjtv6sc.js"></script>
 </body>
 
