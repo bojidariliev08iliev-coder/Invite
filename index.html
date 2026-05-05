@@ -10,6 +10,30 @@
     <link href="BlazorApp5.styles.css" rel="stylesheet" /> 
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+  
+    .sidebar {
+        display: none !important;
+    }
+
+   
+    .top-row {
+        display: none !important;
+    }
+
+   
+    .page {
+        display: block !important;
+    }
+
+    main {
+        width: 100% !important;
+    }
+
+    .content {
+        padding: 0 !important;
+    }
+</style>
 </head>
 <body>
     <div id="app">
@@ -26,12 +50,12 @@
         <a class="dismiss">🗙</a>
     </div>
 
-    <!-- Външни библиотеки -->
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/bg.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
-    <!-- EmailJS Конфигурация -->
+ 
     <script type="text/javascript">
         (function () {
             emailjs.init("uUmkgAM-18oPPb9dQ");
@@ -51,7 +75,7 @@
         };
     </script>
 
-    <!-- Тъй като преименува файловете, Blazor ще ги намери автоматично чрез този скрипт -->
+    
     <script src="_framework/blazor.webassembly.zxhwjtv6sc.js"></script>
 </body>
 
