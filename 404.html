@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="bg">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,23 +9,20 @@
     <link href="BlazorApp5.styles.css" rel="stylesheet" /> 
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+    <script type="importmap">{
+  "imports": {
+    "./_framework/dotnet.js": "./_framework/dotnet.aydj2s58uy.js",
+    "./_framework/dotnet.native.js": "./_framework/dotnet.native.mx9wzm9o5h.js",
+    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.2zl32tp6ah.js"
+  }
+}</script>
     <style>
-        .sidebar, .top-row { 
-            display: none !important; 
-        }
-        .page { 
-            display: block !important; 
-        }
-        main { 
-            width: 100% !important; 
-        }
-        .content { 
-            padding: 0 !important; 
-        }
+        .sidebar, .top-row { display: none !important; }
+        .page { display: block !important; }
+        main { width: 100% !important; }
+        .content { padding: 0 !important; }
     </style>
 </head>
-
 <body>
     <div id="app">
         <svg class="loading-progress">
@@ -35,7 +31,6 @@
         </svg>
         <div class="loading-progress-text"></div>
     </div>
-
     <div id="blazor-error-ui">
         Възникна грешка.
         <a href="" class="reload">Обнови</a>
@@ -44,47 +39,21 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/bg.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
     <script type="text/javascript">
         (function () {
             emailjs.init("uUmkgAM-18oPPb9dQ");
         })();
-
         window.sendEmail = (message) => {
-            console.log("Изпращане на покана...");
             return emailjs.send("service_7q3r4qf", "template_erho0dg", {
                 message: message,
                 to_name: "Божо"
             }).then(function (response) {
-                console.log("Успешно изпратено!", response.status);
                 return true;
             }, function (error) {
-                console.error("Грешка при EmailJS:", error);
                 return false;
             });
         };
     </script>
-    <script type="text/javascript">
-        window.blazorBoot = (boot) => {
-            console.log("Конфигуриране на ресурси...");
-            const runtime = boot.resources.runtime;
-            
-            if (runtime) {
-                const keys = Object.keys(runtime);
-                const dotnetJs = keys.find(k => k.startsWith("dotnet.") && k.endsWith(".js") && !k.includes("native") && !k.includes("runtime"));
-                const nativeJs = keys.find(k => k.includes("dotnet.native.js") || (k.startsWith("dotnet.native") && k.endsWith(".js")));
-                const runtimeJs = keys.find(k => k.includes("dotnet.runtime.js") || (k.startsWith("dotnet.runtime") && k.endsWith(".js")));
-
-                if (dotnetJs) runtime["dotnet.js"] = dotnetJs;
-                if (nativeJs) runtime["dotnet.native.js"] = nativeJs;
-                if (runtimeJs) runtime["dotnet.runtime.js"] = runtimeJs;
-                
-                console.log("Нова карта на ресурсите заредена!");
-            }
-            return boot;
-        };
-    </script>
     <script src="_framework/blazor.webassembly.zxhwjtv6sc.js"></script>
 </body>
-
 </html>
